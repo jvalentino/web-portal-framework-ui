@@ -7,6 +7,7 @@ import PageTemplate from './view/page-template/PageTemplate'; // Correct import 
 
 interface Page {
   uri: string;
+  name: string;
 }
 
 function App() {
@@ -18,7 +19,11 @@ function App() {
     <Router>
       <Routes>
         {config.pages.map((page: Page, index: number) => (
-          <Route key={index} path={page.uri} element={<PageTemplate />} />
+          <Route
+            key={index}
+            path={page.uri}
+            element={<PageTemplate page={page} />} // Pass the entire page object as a prop
+          />
         ))}
       </Routes>
     </Router>

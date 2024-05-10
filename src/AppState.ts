@@ -35,6 +35,10 @@ class AppState {
     return process.env.REACT_APP_HTTP_API;
   }
 
+  public getBuilderApiKey(): string | undefined {
+    return process.env.REACT_APP_BUILDER_API_KEY;
+  }
+
   public setLanguage(language: string): void {
     this.cookies.set("web-portal-framework-language", language);
   }

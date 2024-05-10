@@ -1,25 +1,27 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import AppState from './AppState'; // Correct import path for AppState
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PageTemplate from './view/page-template/PageTemplate'; // Correct import path for PageTemplate
+
+interface Page {
+  uri: string;
+}
 
 function App() {
+  // Assuming AppState.getConfig() returns a valid configuration object
+  const config = AppState.getConfig();
+  console.log(config);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {config.pages.map((page: Page, index: number) => (
+          <Route key={index} path={page.uri} element={<PageTemplate />} />
+        ))}
+      </Routes>
+    </Router>
   );
 }
 

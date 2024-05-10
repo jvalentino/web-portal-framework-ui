@@ -12,13 +12,17 @@
     "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
+    "universal-cookie": "^7.1.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npx env-cmd -f .env.production react-app-rewired start",
+    "build": "npm run test && npx env-cmd -f .env.production react-app-rewired build",
+    "start:dev": "npx env-cmd -f .env.development react-app-rewired start",
+    "build:dev": "npm run prettier && npm run eslint && npm run test && npx env-cmd -f .env.development react-app-rewired build",
     "test": "npx react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "prettier": "npx prettier-eslint \"src/**/*.ts\" --write -l info",
@@ -45,10 +49,13 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
+    "customize-cra": "^1.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "prettier-eslint": "^16.3.0",
-    "prettier-eslint-cli": "^8.0.1"
+    "prettier-eslint-cli": "^8.0.1",
+    "react-app-rewired": "^2.2.1",
+    "yaml-loader": "^0.8.1"
   }
 }
